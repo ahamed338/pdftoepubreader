@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF to EPUB Reader</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <!-- PWA meta tags -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#1a202c">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF to EPUB Reader</title>
+
+  <!-- Tailwind CSS (working CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
+
+  <!-- Local styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- PWA meta tags (optional) -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a202c">
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-start p-4">
-    <h1 class="text-2xl font-bold mb-4">PDF to EPUB Reader</h1>
+  <h1 class="text-2xl font-bold mb-4">PDF to EPUB Reader</h1>
 
-    <div class="w-full max-w-md bg-white shadow-md rounded p-4">
-        <input type="file" id="pdfInput" accept=".pdf" class="mb-2 w-full">
-        <button id="convertBtn" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Convert to EPUB</button>
-    </div>
+  <!-- PDF Upload and Convert -->
+  <div class="w-full max-w-md bg-white shadow-md rounded p-4">
+    <input type="file" id="pdfInput" accept=".pdf" class="mb-2 w-full">
+    <button id="convertBtn" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Convert to EPUB</button>
+  </div>
 
-    <div id="reader" class="mt-6 w-full max-w-md bg-white rounded shadow p-2 min-h-[400px]"></div>
+  <!-- EPUB Reader -->
+  <div id="reader" class="mt-6 w-full max-w-md bg-white rounded shadow p-2 min-h-[400px]"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/epub.js/0.3.88/epub.min.js"></script>
-    <script src="app.js"></script>
+  <!-- epub.js (working CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js"></script>
+
+  <!-- App JS -->
+  <script src="app.js"></script>
 </body>
 </html>
