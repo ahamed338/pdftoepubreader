@@ -9,13 +9,13 @@ convertBtn.addEventListener('click', async () => {
         alert('Please select a PDF file first.');
         return;
     }
-    const pdfFile = pdfInput.files[0];
 
+    const pdfFile = pdfInput.files[0];
     const formData = new FormData();
     formData.append("pdf", pdfFile);
 
     try {
-        const response = await fetch("https://workerjs.ahamed338.workers.dev", { // <-- your Worker URL
+        const response = await fetch("https://workerjs.ahamed338.workers.dev", { // <-- Your Worker URL
             method: "POST",
             body: formData
         });
@@ -30,7 +30,6 @@ convertBtn.addEventListener('click', async () => {
         const result = await response.json();
         console.log(result);
 
-        // Load EPUB in epub.js reader if URL returned
         if (result?.url) {
             if (!book) {
                 book = ePub(result.url);
