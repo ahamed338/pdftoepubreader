@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF to EPUB Reader</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to EPUB Reader</title>
+    
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Tailwind CSS (working CDN) -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
+    <!-- PWA manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a202c">
 
-  <!-- Local styles -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- PWA meta tags (optional) -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1a202c">
+    <!-- Custom styles (optional) -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-start p-4">
-  <h1 class="text-2xl font-bold mb-4">PDF to EPUB Reader</h1>
 
-  <!-- PDF Upload and Convert -->
-  <div class="w-full max-w-md bg-white shadow-md rounded p-4">
-    <input type="file" id="pdfInput" accept=".pdf" class="mb-2 w-full">
-    <button id="convertBtn" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Convert to EPUB</button>
-  </div>
+    <h1 class="text-2xl font-bold mb-4">PDF to EPUB Reader</h1>
 
-  <!-- EPUB Reader -->
-  <div id="reader" class="mt-6 w-full max-w-md bg-white rounded shadow p-2 min-h-[400px]"></div>
+    <div class="w-full max-w-md bg-white shadow-md rounded p-4">
+        <input type="file" id="pdfInput" accept=".pdf" class="mb-2 w-full">
+        <button id="convertBtn" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Convert to EPUB</button>
+    </div>
 
-  <!-- epub.js (working CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js"></script>
+    <div id="reader" class="mt-6 w-full max-w-md bg-white rounded shadow p-2 min-h-[400px]"></div>
 
-  <!-- App JS -->
-  <script src="app.js"></script>
+    <!-- epub.js -->
+    <script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="app.js"></script>
 </body>
 </html>
