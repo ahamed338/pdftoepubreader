@@ -2,7 +2,21 @@ const convertBtn = document.getElementById('convertBtn');
 const pdfInput = document.getElementById('pdfInput');
 const readerDiv = document.getElementById('reader');
 
+// Create a status div to show progress/errors
+let statusDiv = document.getElementById('statusDiv');
+if (!statusDiv) {
+    statusDiv = document.createElement('div');
+    statusDiv.id = 'statusDiv';
+    statusDiv.className = 'mt-2 text-gray-700';
+    convertBtn.parentNode.appendChild(statusDiv);
+}
+
 let book;
+
+function setStatus(message, isError = false) {
+    statusDiv.textContent = message;
+    statusDiv.style.color = isError ? 'red' : 'green';
+}
 
 convertBtn.addEventListener('click', async () => {
     if (!pdfInput.files.length) {
@@ -15,35 +29,43 @@ convertBtn.addEventListener('click', async () => {
     formData.append("pdf", pdfFile);
 
     try {
+        setStatus("Uploading PDF and starting conversion...");
+
         const response = await fetch("https://workerjs.ahamed338.workers.dev", { // <-- Your Worker URL
             method: "POST",
             body: formData
         });
 
-        if (!response.ok) {
-            const text = await response.text();
-            console.error("Worker returned error:", text);
-            alert("Conversion failed. Check console for details.");
+        const text = await response.text();
+        let result;
+        try {
+            result = JSON.parse(text);
+        } catch (e) {
+            throw new Error(`Invalid response from Worker: ${text}`);
+        }
+
+        if (!response.ok || result.error) {
+            setStatus(result.error || 'Conversion failed.', true);
+            alert(`Error: ${result.error || 'Unknown error'}\nDetails: ${JSON.stringify(result.details || '')}`);
             return;
         }
 
-        const result = await response.json();
-        console.log(result);
+        setStatus("Conversion successful! Loading EPUB...");
 
-        if (result?.url) {
-            if (!book) {
-                book = ePub(result.url);
-                const rendition = book.renderTo(readerDiv, {
-                    width: "100%",
-                    height: 400
-                });
-                rendition.display();
-            }
-        } else {
-            alert("Conversion completed, but no EPUB URL returned. Check Worker logs.");
+        if (!book) {
+            book = ePub(result.url);
+            const rendition = book.renderTo(readerDiv, {
+                width: "100%",
+                height: 400
+            });
+            rendition.display();
         }
+
+        setStatus("EPUB loaded successfully!");
+
     } catch (err) {
         console.error(err);
-        alert("Error converting PDF. See console for details.");
+        setStatus(`Error: ${err.message}`, true);
+        alert(`Error during conversion: ${err.message}`);
     }
 });
