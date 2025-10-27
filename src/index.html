@@ -8,6 +8,10 @@
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- PDF.js for PDF processing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <!-- JSZip for EPUB generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <!-- PWA manifest -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -24,7 +28,22 @@
         <button id="convertBtn" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Convert to EPUB</button>
     </div>
 
-    <div id="reader" class="mt-6 w-full max-w-md bg-white rounded shadow p-2 min-h-[400px]"></div>
+    <!-- EPUB Reader Section -->
+    <div class="mt-6 w-full max-w-4xl bg-white rounded shadow p-4">
+        <div id="reader" class="w-full bg-gray-50 rounded min-h-[500px]"></div>
+        
+        <!-- Navigation Controls -->
+        <div class="mt-4 flex justify-center items-center space-x-4">
+            <button id="prevBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Previous</button>
+            <span id="pageInfo" class="px-4 py-2 text-gray-700 font-medium">Page: - / -</span>
+            <button id="nextBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Next</button>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="mt-2 text-center text-sm text-gray-500">
+            Use arrow keys ← → or buttons to navigate
+        </div>
+    </div>
 
     <!-- epub.js -->
     <script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js"></script>
