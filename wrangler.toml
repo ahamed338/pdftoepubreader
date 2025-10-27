@@ -1,5 +1,5 @@
 name = "pdftoepubreader-worker"
-type = "javascript"
 account_id = "31960c5b9491886814e7ec0258b226fb"
 workers_dev = true
 compatibility_date = "2025-10-26"
+main = "worker/worker.js"
