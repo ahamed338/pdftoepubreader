@@ -31,7 +31,7 @@ convertBtn.addEventListener('click', async () => {
     try {
         setStatus("Uploading PDF and starting conversion...");
 
-        const response = await fetch("http://localhost:8787", { // <-- Your Worker URL
+        const response = await fetch("https://pdftoepubreader-worker.ahamed338.workers.dev", { // <-- Your Worker URL
             method: "POST",
             body: formData
         });
